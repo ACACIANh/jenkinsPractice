@@ -30,5 +30,13 @@ pipeline {
              }
         }
 
+        stage("Clean image") {
+             steps {
+                 script {
+                     sh 'docker rmi $imagename:latest'
+                 }
+             }
+        }
+
 	}
 }
