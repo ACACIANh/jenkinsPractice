@@ -47,19 +47,16 @@ pipeline {
                  }
              }
         }
-
-        stage("Clean image") {
-             steps {
-                 script {
-        	        echo 'Clean image'
-           	        sh 'docker rmi $IMAGE_NAME'
-                 }
-             }
-        }
 	}
 
 	post {
 	    always {
+	        script {
+	            if(DOCKER_IMAGE != ''){
+	                echo 'Clean image'
+	                sh 'docker rmi $IMAGE_NAME'
+	            }
+            }
 	        sh 'docker logout'
         }
     }
