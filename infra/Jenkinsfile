@@ -42,7 +42,9 @@ pipeline {
              steps {
                  script {
         	        echo 'Push image'
-        	        sh "docker login -u $DOCKERHUB_CREDENTIAL_USR -p $DOCKERHUB_CREDENTIAL_PSW"
+        	        withCredentials([string(credentialsId: CREDENTIAL_ID, variable: 'DOCKERHUB_CREDENTIAL')]) {
+        	            sh "docker login -u $DOCKERHUB_CREDENTIAL_USR -p $DOCKERHUB_CREDENTIAL_PSW"
+                    }
                     sh "docker push $REGISTRY_URL"
                  }
              }
