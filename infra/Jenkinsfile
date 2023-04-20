@@ -5,8 +5,8 @@ pipeline {
         registryUrl = "gkehdrn95ctl/jenkins-practice:lts"
         registryCredentialId = "docker_hub_credentials"
 
-        DOCKERHUB_USERNAME = credentials(registryCredentialId).username
-        DOCKERHUB_PASSWORD = credentials(registryCredentialId).password
+        DOCKERHUB_USERNAME = credentials('registryCredentialId').username
+        DOCKERHUB_PASSWORD = credentials('registryCredentialId').password
         dockerImage = ''
     }
     agent any
