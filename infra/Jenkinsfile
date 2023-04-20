@@ -17,9 +17,9 @@ pipeline {
 		stage("Checkout") {
 			steps {
 				checkout scm
-				echo "$IMAGE_NAME"
-				echo "$REGISTRY_URL"
-				echo "$CREDENTIAL_ID"
+				echo "image name : $IMAGE_NAME"
+				echo "regestiry url : $REGISTRY_URL"
+				echo "credential id : $CREDENTIAL_ID"
 			}
 		}
 
@@ -46,7 +46,8 @@ pipeline {
                  script {
         	        echo 'Push image'
         	        sh "docker login -u $DOCKERHUB_CREDENTIAL_USR -p $DOCKERHUB_CREDENTIAL_PSW"
-                    sh "docker push $DOCKERHUB_CREDENTIAL_USR/$IMAGE_NAME"
+                    sh "docker push $REGISTRY_URL"
+//                    sh "docker push $DOCKERHUB_CREDENTIAL_USR/$IMAGE_NAME"
 
 //        	        docker.withRegistry( REGISTRY_URL, CREDENTIAL_ID ) {
 //        	            DOCKER_IMAGE
