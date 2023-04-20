@@ -1,15 +1,15 @@
 pipeline {
+    agent any
 
     environment {
         imagename = "jenkins/hello-world:lts"
         registryUrl = "gkehdrn95ctl/jenkins-practice:lts"
         registryCredentialId = "docker_hub_credentials"
 
-        DOCKERHUB_USERNAME = credentials('docker_hub_credentials').username
-        DOCKERHUB_PASSWORD = credentials('docker_hub_credentials').password
+        DOCKERHUB_USERNAME = credentials("docker_hub_credentials").username
+        DOCKERHUB_PASSWORD = credentials("docker_hub_credentials").password
         dockerImage = ''
     }
-    agent any
 
 	stages {
 		stage("Checkout") {
@@ -44,7 +44,7 @@ pipeline {
         	        withCredentials([usernamePassword(credentialsId: 'registryCredentialId', passwordVariable: 'DOCKERHUB_PASSWORD', usernameVariable: 'DOCKERHUB_USERNAME')]) {
                         sh "docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD"
                     }
-                    sh "docker push $DOCKERHUB_USERNAME/imagename"
+                    sh "docker push $DOCKERHUB_USERNAME/$imagename"
 
 //        	        docker.withRegistry( registryUrl, registryCredentialId ) {
 //        	            dockerImage
