@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        IMAGE_NAME = "jenkins/hello-world:lts"
+        IMAGE_NAME = "jenkins-practice:lts"
         REGISTRY_URL = "gkehdrn95ctl/jenkins-practice:lts"
         CREDENTIAL_ID = "docker_hub_credentials"
 
@@ -65,6 +65,11 @@ pipeline {
                  }
              }
         }
-
 	}
+
+	post {
+	    always {
+	        sh 'docker logout'
+        }
+    }
 }
