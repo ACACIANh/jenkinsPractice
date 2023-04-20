@@ -8,8 +8,8 @@ pipeline {
 
         CREDENTIAL = credentials("docker_hub_credentials")
 
-//        DOCKERHUB_USERNAME = credentials('docker_hub_credentials').username
-//        DOCKERHUB_PASSWORD = credentials('docker_hub_credentials').password
+        DOCKERHUB_USERNAME = CREDENTIAL.username
+        DOCKERHUB_PASSWORD = CREDENTIAL.password
         DOCKER_IMAGE = ''
     }
 
@@ -20,7 +20,7 @@ pipeline {
 				echo "$IMAGE_NAME"
 				echo "$REGISTRY_URL"
 				echo "$CREDENTIAL_ID"
-				echo "$CREDENTIAL"
+//				echo "$CREDENTIAL"
 				echo "$DOCKERHUB_USERNAME"
 				echo "$DOCKERHUB_PASSWORD"
 			}
