@@ -2,8 +2,8 @@ pipeline {
 
     environment {
         imagename = "jenkins/hello-world:lts"
-        registry = "url"
-        registryCredential = "credential"
+        registryUrl = "gkehdrn95ctl/jenkins-practice"
+        registryCredentialId = "docker_hub_credentials"
         dockerImage = ''
     }
     agent any
@@ -38,6 +38,9 @@ pipeline {
              steps {
                  script {
         	        echo 'Push image'
+        	        docker.withRegistry( registryUrl, registryCredentialId ) {
+        	            dockerImage.push( 'latest' )
+                    }
                  }
              }
         }
