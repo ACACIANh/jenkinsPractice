@@ -6,10 +6,10 @@ pipeline {
         REGISTRY_URL = "gkehdrn95ctl/jenkins-practice:lts"
         CREDENTIAL_ID = "docker_hub_credentials"
 
-//        CREDENTIAL = credentials("docker_hub_credentials")
+        DOCKERHUB_CREDENTIAL = credentials('docker_hub_credentials')
 
-        DOCKERHUB_USERNAME = credentials('docker_hub_credentials').username
-        DOCKERHUB_PASSWORD = credentials('docker_hub_credentials').password
+//        DOCKERHUB_USERNAME = credentials('docker_hub_credentials').username
+//        DOCKERHUB_PASSWORD = credentials('docker_hub_credentials').password
         DOCKER_IMAGE = ''
     }
 
@@ -20,9 +20,6 @@ pipeline {
 				echo "$IMAGE_NAME"
 				echo "$REGISTRY_URL"
 				echo "$CREDENTIAL_ID"
-//				echo "$CREDENTIAL"
-				echo "$DOCKERHUB_USERNAME"
-				echo "$DOCKERHUB_PASSWORD"
 			}
 		}
 
@@ -48,10 +45,8 @@ pipeline {
              steps {
                  script {
         	        echo 'Push image'
-        	        withCredentials([usernamePassword(credentialsId: 'CREDENTIAL_ID', passwordVariable: 'DOCKERHUB_PASSWORD', usernameVariable: 'DOCKERHUB_USERNAME')]) {
-                        sh "docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD"
-                    }
-                    sh "docker push $DOCKERHUB_USERNAME/$IMAGE_NAME"
+        	        sh "docker login -u $DOCKERHUB_CREDENTIAL_USR -p $DOCKERHUB_CREDENTIAL_PSW"
+                    sh "docker push $DOCKERHUB_CREDENTIAL_USR/$IMAGE_NAME"
 
 //        	        docker.withRegistry( REGISTRY_URL, CREDENTIAL_ID ) {
 //        	            DOCKER_IMAGE
