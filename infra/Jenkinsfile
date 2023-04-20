@@ -9,7 +9,7 @@ pipeline {
     agent any
 
 	stages {
-		stage("Checkout") 정{
+		stage("Checkout") {
 			steps {
 				checkout scm
 			}
