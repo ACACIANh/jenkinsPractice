@@ -20,6 +20,7 @@ pipeline {
 				echo "image name : $IMAGE_NAME"
 				echo "regestiry url : $REGISTRY_URL"
 				echo "credential id : $CREDENTIAL_ID"
+				echo "credential user name : $DOCKERHUB_CREDENTIAL_USR"
 			}
 		}
 
