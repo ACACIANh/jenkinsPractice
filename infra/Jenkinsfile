@@ -23,8 +23,9 @@ pipeline {
 		stage("Build jar") {
         	steps {
         	    echo 'Build jar'
-                sh 'chmod +x gradlew'
-                sh './gradlew clean build -b build.gradle'
+                withGradle {
+                    sh './gradlew clean build -b build.gradle'
+                }
         	}
         }
 
