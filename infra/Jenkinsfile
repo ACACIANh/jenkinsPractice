@@ -39,7 +39,7 @@ pipeline {
                  script {
         	        echo 'Push image'
         	        docker.withRegistry( registryUrl, registryCredentialId ) {
-        	            dockerImage.push( 'lts' )
+        	            dockerImage
                     }
                  }
              }
