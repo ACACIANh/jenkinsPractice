@@ -2,14 +2,10 @@ pipeline {
     agent any
 
     environment {
-        IMAGE_NAME = "jenkins-practice:lts"
+        IMAGE_NAME = "gkehdrn95ctl/jenkins-practice:lts"
         REGISTRY_URL = "gkehdrn95ctl/jenkins-practice:lts"
         CREDENTIAL_ID = "docker_hub_credentials"
-
         DOCKERHUB_CREDENTIAL = credentials('docker_hub_credentials')
-
-//        DOCKERHUB_USERNAME = credentials('docker_hub_credentials').username
-//        DOCKERHUB_PASSWORD = credentials('docker_hub_credentials').password
         DOCKER_IMAGE = ''
     }
 
@@ -36,7 +32,6 @@ pipeline {
              steps {
                  script {
         	        echo 'Build image'
-
                     DOCKER_IMAGE = docker.build( IMAGE_NAME, "-f infra/Dockerfile ." )
                  }
              }
@@ -48,11 +43,6 @@ pipeline {
         	        echo 'Push image'
         	        sh "docker login -u $DOCKERHUB_CREDENTIAL_USR -p $DOCKERHUB_CREDENTIAL_PSW"
                     sh "docker push $REGISTRY_URL"
-//                    sh "docker push $DOCKERHUB_CREDENTIAL_USR/$IMAGE_NAME"
-
-//        	        docker.withRegistry( REGISTRY_URL, CREDENTIAL_ID ) {
-//        	            DOCKER_IMAGE
-//                  }
                  }
              }
         }
