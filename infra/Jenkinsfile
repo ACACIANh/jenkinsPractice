@@ -6,10 +6,10 @@ pipeline {
         REGISTRY_URL = "gkehdrn95ctl/jenkins-practice:lts"
         CREDENTIAL_ID = "docker_hub_credentials"
 
-        CREDENTIAL = credentials("docker_hub_credentials")
+//        CREDENTIAL = credentials("docker_hub_credentials")
 
-        DOCKERHUB_USERNAME = "${CREDENTIAL.username}"
-        DOCKERHUB_PASSWORD = "${CREDENTIAL.password}"
+        DOCKERHUB_USERNAME = credentials('docker_hub_credentials').username
+        DOCKERHUB_PASSWORD = credentials('docker_hub_credentials').password
         DOCKER_IMAGE = ''
     }
 
