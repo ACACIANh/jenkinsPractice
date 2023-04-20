@@ -28,7 +28,7 @@ pipeline {
                  script {
         	        echo 'Build image'
 
-#                    sh 'docker build -t $imagename -f infra/Dockerfile .'
+//                    sh 'docker build -t $imagename -f infra/Dockerfile .'
                     dockerImage = docker.build( imagename, "-f infra/Dockerfile ." )
                  }
              }
