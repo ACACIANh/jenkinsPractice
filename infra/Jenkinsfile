@@ -47,7 +47,7 @@ pipeline {
              steps {
                  script {
         	        echo 'Clean image'
-           	        sh 'docker rmi $imagename:lts'
+           	        sh 'docker rmi $imagename'
                  }
              }
         }
