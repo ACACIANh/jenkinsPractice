@@ -45,7 +45,7 @@ pipeline {
              steps {
                  script {
         	        echo 'Clean image'
-#        	        sh 'docker rmi $imagename:latest'
+//       	        sh 'docker rmi $imagename:latest'
                  }
              }
         }
