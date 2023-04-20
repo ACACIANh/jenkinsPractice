@@ -17,6 +17,7 @@ pipeline {
 
 		stage("Build jar") {
         	steps {
+        	    echo 'Build jar'
                 sh 'chmod +x gradlew'
                 sh './gradlew clean build -b build.gradle'
         	}
@@ -25,7 +26,17 @@ pipeline {
         stage("Build image") {
              steps {
                  script {
-                     dockerImage = docker.build( imagename, "-f infra/Dockerfile ." )
+        	        echo 'Build image'
+
+                    dockerImage = docker.build( imagename, "-f Dockerfile ." )
+                 }
+             }
+        }
+
+        stage("Push image") {
+             steps {
+                 script {
+        	        echo 'Push image'
                  }
              }
         }
@@ -33,7 +44,8 @@ pipeline {
         stage("Clean image") {
              steps {
                  script {
-                     sh 'docker rmi $imagename:latest'
+        	        echo 'Clean image'
+        	        sh 'docker rmi $imagename:latest'
                  }
              }
         }
