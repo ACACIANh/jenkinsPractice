@@ -8,8 +8,8 @@ pipeline {
 
         CREDENTIAL = credentials("docker_hub_credentials")
 
-        DOCKERHUB_USERNAME = CREDENTIAL.username
-        DOCKERHUB_PASSWORD = CREDENTIAL.password
+        DOCKERHUB_USERNAME = "${CREDENTIAL.username}"
+        DOCKERHUB_PASSWORD = "${CREDENTIAL.password}"
         DOCKER_IMAGE = ''
     }
 
