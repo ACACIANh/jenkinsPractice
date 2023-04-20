@@ -1,7 +1,7 @@
 pipeline {
 
     environment {
-        imagename = "jenkins/hello-world"
+        imagename = "jenkins/hello-world:lts"
         registry = "url"
         registryCredential = "credential"
         dockerImage = ''
@@ -47,7 +47,7 @@ pipeline {
              steps {
                  script {
         	        echo 'Clean image'
-//       	        sh 'docker rmi $imagename:latest'
+           	        sh 'docker rmi $imagename:lts'
                  }
              }
         }
