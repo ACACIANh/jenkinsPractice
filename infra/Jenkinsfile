@@ -2,8 +2,8 @@ pipeline {
     agent any
 
     environment {
-        IMAGE_NAME = "gkehdrn95ctl/jenkins-practice:lts"
-        REGISTRY_URL = "gkehdrn95ctl/jenkins-practice:lts"
+        IMAGE_NAME = "acacian/jenkins-practice:lts"
+        REGISTRY_URL = "acacian/jenkins-practice:lts"
         CREDENTIAL_ID = "docker_hub_credentials"
         DOCKERHUB_CREDENTIAL = credentials('docker_hub_credentials')
         DOCKER_IMAGE = ''
